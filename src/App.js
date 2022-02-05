@@ -2,11 +2,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleGetUsers } from "./Redux/Actions/User";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Home from "./Routes/Home";
 import AddUser from "./Routes/AddUser";
+import { handleGetUsers } from "./Redux/Actions/GetUsers";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

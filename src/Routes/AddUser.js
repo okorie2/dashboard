@@ -2,14 +2,16 @@ import React, { useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { handleAddUSer } from "../Redux/Actions/User";
 import { getIn, useFormik } from "formik";
 import * as Yup from "yup";
+import { v4 as uuidv4 } from "uuid";
+import { handleAddUSer } from "../Redux/Actions/AddUser";
 
 export default function AddUser() {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
+      id: uuidv4(),
       name: "",
       username: "",
       email: "",
@@ -33,9 +35,9 @@ export default function AddUser() {
       }),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      //   alert(JSON.stringify(values, null, 2));
       dispatch(handleAddUSer(values));
-      console.log("submited");
+      //   console.log("submited");
     },
   });
 
@@ -49,30 +51,6 @@ export default function AddUser() {
     },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserDetails({
-      ...userDetails,
-      [name]: value,
-    });
-  };
-  const handleCity = (e) => {
-    const { name, value } = e.target;
-    setUserDetails({
-      ...userDetails,
-      address: {
-        ...userDetails.address,
-        [name]: value,
-      },
-    });
-    console.log(userDetails.address.city, "city");
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(handleAddUSer());
-    // console.log(body, "bodyy");
-  };
-
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
@@ -85,12 +63,8 @@ export default function AddUser() {
               fullWidth
               id="fullWidth"
               name="name"
-              //   onChange={handleChange}
               {...formik.getFieldProps("name")}
             />
-            {/* {formik.touched.name && formik.errors.name ? (
-              <div>{formik.errors.name}</div>
-            ) : null} */}
           </div>
 
           <div className="item">
@@ -101,7 +75,6 @@ export default function AddUser() {
               error={Boolean(formik.touched.username && formik.errors.username)}
               id="fullWidth"
               name="username"
-              //   onChange={handleChange}
               {...formik.getFieldProps("username")}
             />
           </div>
@@ -114,7 +87,6 @@ export default function AddUser() {
               name="email"
               helperText={formik.touched.email && formik.errors.email}
               error={Boolean(formik.touched.email && formik.errors.email)}
-              //   onChange={handleChange}
               {...formik.getFieldProps("email")}
             />
           </div>

@@ -61,3 +61,26 @@ code {
 a {
   text-decoration: none;
 }
+.loader {
+  margin: auto;
+  margin-top: 20%;
+  width: max-content;
+  align-items: center;
+}
+.loader-parent {
+  width: 100%;
+}
+
+.modal-content {
+  position: absolute;
+  top: 45%;
+  left: 38%;
+  padding: 3%;
+  width: 20%;
+  background-color: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+}
+.b-flex {
+  display: flex;
+  justify-content: space-between;
+}
