@@ -7,13 +7,17 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "./Routes/Home";
 import AddUser from "./Routes/AddUser";
 import { handleGetUsers } from "./Redux/Actions/GetUsers";
+import EditUser from "./Routes/EditUser";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(handleGetUsers());
-  }, [dispatch, handleGetUsers]);
+  }, []);
+  // useEffect(() => {
+  //   dispatch(handleGetUserById(id));
+  // }, []);
 
-  const { users, loading } = useSelector(({ users }) => users);
+  const { user, users, loading } = useSelector(({ users }) => users);
   console.log(users, "userssss");
 
   return (
@@ -22,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home users={users} />} />
           <Route path="/adduser" element={<AddUser />} />
+          <Route path="/edituser/:id" element={<EditUser />} />
         </Routes>
       </BrowserRouter>
     </>

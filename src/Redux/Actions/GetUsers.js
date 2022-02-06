@@ -5,6 +5,7 @@ import {
   GET_USERS,
   GET_USERS_ERROR,
   GET_USERS_SUCCESS,
+  GET_USER_BY_ID,
 } from "./ActionTypes";
 import axios from "axios";
 const getUsers = () => ({
@@ -21,27 +22,30 @@ const getUsersError = (error) => ({
   payload: error,
 });
 
-const addUser = () => ({
-  type: ADD_USER,
-});
-
-const addUserSuccess = (userData) => ({
-  type: ADD_USER_SUCCESS,
-  payload: userData,
-});
-
-const addUserError = (error) => ({
-  type: ADD_USER_ERROR,
-  payload: error,
+const getUserById = (userId) => ({
+  type: GET_USER_BY_ID,
+  payload: userId,
 });
 
 export const handleGetUsers = () => async (dispatch) => {
   dispatch(getUsers());
   try {
     const { data } = await axios.get(
-      "https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data"
+      `https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data`
     );
     dispatch(getUsersSuccess(data));
+  } catch (error) {
+    dispatch(getUsersError(error));
+  }
+};
+
+export const handleGetUserById = (id) => async (dispatch) => {
+  dispatch(getUsers());
+  try {
+    const { data } = await axios.get(
+      `https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data/${id}`
+    );
+    dispatch(getUserById(data));
   } catch (error) {
     dispatch(getUsersError(error));
   }

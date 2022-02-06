@@ -126,9 +126,11 @@ export default function Home({ users }) {
                     {users.address?.city}
                   </StyledTableCell>
                   <StyledTableCell align="center" id="t-cell">
-                    <Button variant="contained" color="warning" id="t-btn">
-                      Edit
-                    </Button>
+                    <Link to={`/edituser/${users.id}`}>
+                      <Button variant="contained" color="warning" id="t-btn">
+                        Edit
+                      </Button>
+                    </Link>
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
