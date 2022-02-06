@@ -18,7 +18,6 @@ function App() {
   // }, []);
 
   const { user, users, loading } = useSelector(({ users }) => users);
-  console.log(users, "userssss");
 
   return (
     <>

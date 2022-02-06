@@ -28,7 +28,6 @@ export const handleDeleteUser = (userId) => async (dispatch) => {
     );
     const data = await response.json();
     dispatch(deleteUserSuccess(userId));
-    console.log(userId, "useriddd");
   } catch (error) {
     dispatch(deleteUserError(error));
   }

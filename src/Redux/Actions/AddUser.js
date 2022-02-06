@@ -28,7 +28,6 @@ export const handleAddUSer = (body) => async (dispatch) => {
       }
     );
     const data = await response.json();
-    console.log(body, "action");
 
     dispatch(addUserSuccess(data));
   } catch (error) {

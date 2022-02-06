@@ -29,7 +29,6 @@ export const handleEditUSer = (userId, body) => async (dispatch) => {
       }
     );
     const data = await response.json();
-    console.log(body, "action");
 
     dispatch(editUserSuccess(data, userId));
   } catch (error) {

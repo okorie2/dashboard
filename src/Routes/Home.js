@@ -56,7 +56,6 @@ export default function Home({ users }) {
   const handleDelete = (id) => {
     dispatch(handleDeleteUser(id));
     setOpen(false);
-    // console.log(id, "id");
   };
 
   const getUsers = () => {
