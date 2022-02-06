@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import { styled } from "@mui/material/styles";
@@ -52,9 +52,11 @@ export default function Home({ users }) {
   const handleDelete = (id) => {
     dispatch(handleDeleteUser(id));
     setOpen(false);
-
-    console.log(id, "id");
+    // console.log(id, "id");
   };
+
+  useEffect(() => {}, []);
+
   return (
     <div className="t-container">
       <h1>Dashboard</h1>
@@ -77,7 +79,7 @@ export default function Home({ users }) {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow sx={{ height: "100px" }}>
-                <TableCell id="t-cell">Id</TableCell>
+                <TableCell id="t-cell">ID</TableCell>
 
                 <TableCell id="t-cell">Name</TableCell>
                 <TableCell id="t-cell" align="center">
@@ -97,6 +99,7 @@ export default function Home({ users }) {
                 </TableCell>
               </TableRow>
             </TableHead>
+
             <TableBody>
               {users?.map((users, i) => (
                 <StyledTableRow
@@ -141,8 +144,14 @@ export default function Home({ users }) {
               ))}
             </TableBody>
           </Table>
+          {users.length === 0 && (
+            <div className="null">
+              <h3>No Users Present</h3>
+            </div>
+          )}
         </TableContainer>
       )}
+
       <div>
         <Modal
           open={open}

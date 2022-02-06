@@ -84,3 +84,12 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.null {
+  width: 40%;
+  margin: auto;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  text-align: center;
+  /* background-color: yellow; */
+  color: rgb(237, 223, 247);
+}
