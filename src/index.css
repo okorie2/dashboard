@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1d1d1d;
+  /* background-color: #1d1d1d; */
 }
 
 code {
@@ -17,7 +17,7 @@ code {
   width: 80%;
   margin: auto;
   margin-top: 7%;
-  color: rgb(237, 223, 247);
+  /* color: rgb(237, 223, 247); */
 }
 .top-flex {
   display: flex;
@@ -49,7 +49,7 @@ code {
   background-color: #363333f1;
 }
 #t-cell {
-  color: rgb(237, 223, 247);
+  /* color: rgb(237, 223, 247); */
 }
 .btns {
   display: flex;
@@ -92,6 +92,33 @@ a {
   text-align: center;
   /* background-color: yellow; */
   color: rgb(237, 223, 247);
+}
+.sort-button1 {
+  border-radius: 2rem;
+  width: max-content;
+  cursor: pointer;
+  position: absolute;
+  top: -30%;
+  right: 0;
+  padding-top: 3%;
+}
+.sort-button2 {
+  border-radius: 2rem;
+  width: max-content;
+  cursor: pointer;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding-top: 3%;
+}
+.sort-button1:hover,
+.sort-button2:hover {
+  opacity: 8;
+  color: black;
+  background-color: lightblue;
+}
+.username-head {
+  position: relative;
 }
 
 @media only screen and (max-width: 600px) {

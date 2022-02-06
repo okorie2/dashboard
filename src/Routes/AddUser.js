@@ -12,10 +12,11 @@ import { useNavigate } from "react-router";
 export default function AddUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading } = useSelector(({ users }) => users);
+  const { loading, users } = useSelector(({ users }) => users);
+
   const formik = useFormik({
     initialValues: {
-      id: uuidv4(),
+      id: users[users.length - 1]?.id + 1,
       name: "",
       username: "",
       email: "",
@@ -33,18 +34,14 @@ export default function AddUser() {
       email: Yup.string().email("Invalid email address").required("Required"),
 
       address: Yup.object().shape({
-        city: Yup.string()
-          .min(5, "Must be 5 characters or more")
-          .required("Required"),
+        city: Yup.string().required("Required"),
       }),
     }),
     onSubmit: (values) => {
-      //   alert(JSON.stringify(values, null, 2));
       dispatch(handleAddUSer(values));
       if (!loading) {
         navigate("/");
       }
-      //   console.log("submited");
     },
   });
 

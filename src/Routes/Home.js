@@ -11,11 +11,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import SortIcon from "@mui/icons-material/Sort";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../Componets/Loader";
 import { handleDeleteUser } from "../Redux/Actions/DeleteUser";
+import _ from "underscore";
+import AZ from "../../src/SVGs/text-sort-ascending-svgrepo-com.svg";
+import ZA from "../../src/SVGs/text-sort-descending-svgrepo-com.svg";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,6 +45,7 @@ export default function Home({ users }) {
   const { loading } = useSelector(({ users }) => users);
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userList, SetUserList] = useState(users);
   const handleOpen = (id) => {
     setOpen(true);
     setUserId(id);
@@ -55,7 +59,24 @@ export default function Home({ users }) {
     // console.log(id, "id");
   };
 
-  useEffect(() => {}, []);
+  const getUsers = () => {
+    SetUserList(users);
+  };
+  const sortUsers = () => {
+    const iteratees = (obj) => obj.username;
+    const sorted = _.sortBy(users, iteratees);
+    SetUserList(sorted);
+  };
+
+  const sortUsersReverse = () => {
+    const iteratees = (obj) => obj.username;
+    const sorted = _.sortBy(users, iteratees);
+    SetUserList(sorted.reverse());
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, [users]);
 
   return (
     <div className="t-container">
@@ -75,15 +96,28 @@ export default function Home({ users }) {
           <Loader />
         </div>
       ) : (
-        <TableContainer component={Paper} id="t-cont">
+        <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow sx={{ height: "100px" }}>
-                <TableCell id="t-cell">ID</TableCell>
+                <TableCell id="">ID</TableCell>
 
                 <TableCell id="t-cell">Name</TableCell>
                 <TableCell id="t-cell" align="center">
-                  Username
+                  <div className="username-head">
+                    <span>Username</span>{" "}
+                    <span>
+                      <div
+                        className="sort-button1"
+                        onClick={() => sortUsersReverse()}
+                      >
+                        <img src={ZA} alt="za" />
+                      </div>
+                      <div className="sort-button2" onClick={() => sortUsers()}>
+                        <img src={AZ} alt="az" />
+                      </div>
+                    </span>
+                  </div>
                 </TableCell>
                 <TableCell id="t-cell" align="center">
                   Email
@@ -101,7 +135,7 @@ export default function Home({ users }) {
             </TableHead>
 
             <TableBody>
-              {users?.map((users, i) => (
+              {userList?.map((users, i) => (
                 <StyledTableRow
                   key={users.id}
                   sx={{
@@ -110,7 +144,7 @@ export default function Home({ users }) {
                   }}
                 >
                   <StyledTableCell component="th" scope="row" id="t-cell">
-                    {i + 1}
+                    {users.id}
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row" id="t-cell">
                     {users.name}
