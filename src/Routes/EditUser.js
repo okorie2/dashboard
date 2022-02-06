@@ -43,7 +43,7 @@ export default function EditUser() {
 
       address: Yup.object().shape({
         city: Yup.string()
-          .min(5, "Must be 5 characters or more")
+          .min(3, "Must be 3 characters or more")
           .required("Required"),
       }),
     }),
