@@ -6,9 +6,13 @@ import { getIn, useFormik } from "formik";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { handleAddUSer } from "../Redux/Actions/AddUser";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export default function AddUser() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading } = useSelector(({ users }) => users);
   const formik = useFormik({
     initialValues: {
       id: uuidv4(),
@@ -37,6 +41,9 @@ export default function AddUser() {
     onSubmit: (values) => {
       //   alert(JSON.stringify(values, null, 2));
       dispatch(handleAddUSer(values));
+      if (!loading) {
+        navigate("/");
+      }
       //   console.log("submited");
     },
   });
@@ -99,9 +106,11 @@ export default function AddUser() {
             />
           </div>
           <div className="item btns">
-            <Button variant="outlined" color="error">
-              Cancel
-            </Button>
+            <Link to="/">
+              <Button variant="outlined" color="error">
+                Cancel
+              </Button>
+            </Link>
             <Button variant="contained" color="success" type="submit">
               Submit
             </Button>

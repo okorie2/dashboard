@@ -97,7 +97,9 @@ a {
 @media only screen and (max-width: 600px) {
   .form-flex {
     width: 80%;
-    right: 9%;
+    right: 6%;
+    padding: 5%;
+    top: 8%;
   }
   .modal-content {
     top: 38%;
