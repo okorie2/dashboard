@@ -107,6 +107,9 @@ a {
     width: 61%;
     padding: 6%;
   }
+  .loader-parent {
+    margin-top: 50%;
+  }
 }
 
 @media only screen and (min-width: 600px) {
